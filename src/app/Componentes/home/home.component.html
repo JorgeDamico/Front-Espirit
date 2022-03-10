@@ -1,0 +1,107 @@
+<section class="row">
+    <div class="col-lg-6 offset-sm-3 col-10 offset-1 mx-auto" id="formu">
+        <p class="p_titulo text text-center pb-4">Encuesta de satisfacción</p>
+        <form [formGroup]="myForm" (ngSubmit)="Registrar()">
+            <div class="mb-3" >
+                <label class="form-label" >Nombre</label>                    
+                <input  type="text" class="form-control" formControlName="nombre">      
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Nacimiento</label>
+                <input type="date" class="form-control" formControlName="nacimiento">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Género</label>
+                <select class="form-control" formControlName="genero" id="" >
+                    <option value="Mujer">Mujer</option>
+                    <option value="Hombre">Hombre</option>
+                </select> 
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Provincia</label>
+                <input type="text" class="form-control" formControlName="provincia" >
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Valoración</label>
+                <select class="form-control" formControlName="valoracion" id="" >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select> 
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Recomendación</label>
+                <select class="form-control" formControlName="recomendacion" id="" >
+                    <option value="si">Si</option>
+                    <option value="no">No</option>
+                </select> 
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Comentario</label>
+                <input type="text" class="form-control" formControlName="comentario" >
+            </div>
+            
+            <button id="btn_Enviar" type="submit" class="btn btn-outline-success" [disabled]="myForm.invalid">
+                <div *ngIf="!myForm.invalid">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-check-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                </svg>
+                </div>
+                Enviar
+            </button>
+    
+            <div id="err" *ngIf="myForm.get('nombre')?.errors && myForm.get('nombre')?.dirty">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                </svg>
+                <p *ngIf="myForm.get('nombre')?.hasError('required')">No deje el nombre vacío</p>
+                <p *ngIf="myForm.get('nombre')?.hasError('minlength')">El nombre debe contener más de tres caracteres</p>
+            </div>
+            <div id="err" *ngIf="myForm.get('genero')?.errors && myForm.get('genero')?.dirty">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                </svg>
+                <p *ngIf="myForm.get('genero')?.hasError('required')">No deje el género vacío</p>
+            </div>
+            
+            <div id="err" *ngIf="myForm.get('provincia')?.errors && myForm.get('provincia')?.dirty">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                </svg>
+                <p *ngIf="myForm.get('provincia')?.hasError('required')">Complete la provincia</p>
+                <p *ngIf="myForm.get('provincia')?.hasError('minlength')">La provincia debe contener más de tres caracteres</p>
+            </div>
+            <div id="err" *ngIf="myForm.get('comentario')?.errors && myForm.get('comentario')?.dirty">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                </svg>
+                <p *ngIf="myForm.get('comentario')?.hasError('required')">Deje un comentario</p>
+                <p *ngIf="myForm.get('comentario')?.hasError('minlength')">El comentario debe contener más de tres caracteres</p>
+            </div>
+    
+        </form>
+    </div>
+
+
+</section>
+
+<!--
+    <div class="card mx-auto mt-3" style="width: 18rem;" *ngFor="let item of arrayEncuestas">
+        <div class="card-body">
+            <h5 class="card-title">{{item.nombre}}</h5>
+            <p class="card-subtitle mb-2">Edad: {{item.nacimiento | date}}</p>
+            <p class="card-subtitle mb-2">Género: {{item.genero}}</p>
+            <p class="card-subtitle mb-2">Provincia: {{item.provincia}}</p>
+            <p class="card-subtitle mb-2">Valoración: {{item.valoracion}}</p>
+            <p class="card-subtitle mb-2">Recomienda: {{item.recomendacion}}</p>
+            <p class="card-subtitle mb-2">Comentario: {{item.comentario}}</p>
+        </div>
+    </div>
+-->
